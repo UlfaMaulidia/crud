@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Tambah Barang</title>
+    <title>Pembelian</title>
 </head>
  
 <body>
@@ -50,17 +50,19 @@
     </form>
     
     <?php
- 
+
+    // id nama_barang kategori satuan harga_satuan jumlah_satuan total
     if(isset($_POST['Submit'])) {
         $nama_barang = $_POST['nama_barang'];
         $kategori = $_POST['kategori'];
         $satuan = $_POST['satuan'];
         $harga_satuan = $_POST['harga_satuan'];
         $jumlah_satuan = $_POST['jumlah_satuan'];
+        $total = ($_POST['harga_satuan'] * $_POST['jumlah_satuan']) - (0.2 * ($_POST['harga_satuan'] * $_POST['jumlah_satuan']));
     
         include_once("config.php");
                 
-        $result = mysqli_query($mysqli, "INSERT INTO barang(nama_barang, kategori, satuan, harga_satuan, jumlah_satuan) VALUES('$nama_barang','$kategori','$satuan','$harga_satuan','$jumlah_satuan')");
+        $result = mysqli_query($mysqli, "INSERT INTO barang(nama_barang, kategori, satuan, harga_satuan, jumlah_satuan, total) VALUES('$nama_barang','$kategori','$satuan','$harga_satuan','$jumlah_satuan','$total')");
         
         echo "User added successfully. <a href='index.php'>View Barang</a>";
     }
